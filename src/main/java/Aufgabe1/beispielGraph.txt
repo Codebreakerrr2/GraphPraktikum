@@ -1,0 +1,2 @@
+Hamburg -> Bremen: 123;
+Hamburg -> Berlin: 289;
