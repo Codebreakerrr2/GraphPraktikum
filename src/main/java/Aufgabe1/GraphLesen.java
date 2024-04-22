@@ -14,7 +14,7 @@ public class GraphLesen {
 
     public static Graph readGraph(String filename) throws IOException {
         Pattern directedPattern = Pattern.compile("\\s*(?<nameNode1>\\w)\\s*(->\\s*(?<nameNode2>\\w)\\s*(?<edgeName>\\(\\w\\))?\\s*(:\\s*(?<edgeGewicht>\\d))?)?\\s*;");
-        Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w)\\s*(\\s*--\\s*(?<nameNode2>\\w)\\s*(?<edgeName>\\(\\w\\))?\\s*(:\\s*(?<edgeGewicht>\\d))?)?\\s*;");
+        Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w)\\s*(--\\s*(?<nameNode2>\\w)\\s*(?<edgeName>\\(\\w\\))?\\s*(:\\s*(?<edgeGewicht>\\d))?)?\\s*;");
         Graph graph = new MultiGraph(filename);
         List<String> linesFromFile;
 
