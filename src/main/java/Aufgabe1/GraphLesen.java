@@ -13,8 +13,8 @@ import org.graphstream.graph.implementations.MultiGraph;
 public class GraphLesen {
 
     public static Graph readGraph(String filename) throws IOException {
-        Pattern directedPattern = Pattern.compile("\\s*(?<nameNode1>\\w)\\s*(->\\s*(?<nameNode2>\\w)\\s*(?<edgeName>\\(\\w\\))?\\s*(:\\s*(?<edgeGewicht>\\d))?)?\\s*;");
-        Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w)\\s*(--\\s*(?<nameNode2>\\w)\\s*(?<edgeName>\\(\\w\\))?\\s*(:\\s*(?<edgeGewicht>\\d))?)?\\s*;");
+        Pattern directedPattern =Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(->\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
+        Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(--\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
         Graph graph = new MultiGraph(filename);
         List<String> linesFromFile;
 
@@ -42,12 +42,10 @@ public class GraphLesen {
     }
 
     public static void main(String[] args) throws IOException {
-        String graphZeileNormaler = "A ->  B ;";
-        String graphZeileNormalerMitDplPktUndGewicht = "A ->  B: 23 ;";
-        String graphZeileNormalerMitKlammerUndGewicht = "A ->  B (23) ;";
-        Pattern directedPattern = Pattern.compile("((\\w+)\\s*->\\s*(\\w+)\\s*)((:\\s*\\w+\\s*) | (\\((\\s*\\w+\\s*)\\)))*\\s*;");
+        String graphZeileNormaler = "   A->B (a) : 234 ;";
+
+        Pattern directedPattern = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(->\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
         System.out.println(directedPattern.matcher(graphZeileNormaler).matches());
-        System.out.println(directedPattern.matcher(graphZeileNormalerMitDplPktUndGewicht).matches());
-        System.out.println(directedPattern.matcher(graphZeileNormalerMitKlammerUndGewicht).matches());
+
     }
 }
