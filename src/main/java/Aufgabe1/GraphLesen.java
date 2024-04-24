@@ -24,6 +24,7 @@ public class GraphLesen {
      * @return Graph-Objekt/Null
      * */
 
+
     public static Graph readGraph(String fileName) {
         Pattern directedPattern =Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(->\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
         Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(--\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
@@ -38,6 +39,7 @@ public class GraphLesen {
             }
         } catch (IOException e) {
             e.printStackTrace();
+   
         }
 
 
@@ -86,5 +88,6 @@ public class GraphLesen {
     public static void main(String[] args) throws IOException {
         //"C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"
     Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
+
     }
 }
