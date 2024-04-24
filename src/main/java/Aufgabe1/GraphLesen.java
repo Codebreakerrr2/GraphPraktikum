@@ -25,68 +25,55 @@ public class GraphLesen {
      * */
 
     public static Graph readGraph(String fileName) {
-        Pattern directedPattern =Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(->\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
-        Pattern undirectedPattern = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(--\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
-        Graph graph = new MultiGraph(fileName);
+        Pattern directionPattern =Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*((?<direction>->|--)\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
+            Graph graph= new MultiGraph(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line ;
 
             while ((line = br.readLine()) != null) {
-                Matcher directedMatch=directedPattern.matcher(line);
-                Matcher undirectedMatch=undirectedPattern.matcher(line);
-                if(!(directedMatch.matches() || undirectedMatch.matches())) return null;
+                Matcher patternMatches=directionPattern.matcher(line);
+
+                if(!(patternMatches.matches())) return null;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Pattern directedPattern2 =Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(->\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
-        Pattern undirectedPattern2 = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*(--\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
-                Matcher directedMatch=directedPattern2.matcher(line);
-                Matcher undirectedMatch=undirectedPattern2.matcher(line);
-                if(directedMatch.matches()){
+                Matcher patternMatches=directionPattern.matcher(line);
 
-                    String nameNode1= directedMatch.group("nameNode1");
-                    String nameNode2= directedMatch.group("nameNode2");
-                    String edgeName= directedMatch.group("edgeName");
-                    String edgeGewicht=directedMatch.group("edgeGewicht");
+                if(patternMatches.matches()){
+
+                    String nameNode1= patternMatches.group("nameNode1");
+                    String nameNode2= patternMatches.group("nameNode2");
+                    String edgeName= patternMatches.group("edgeName");
+                    String edgeGewicht=patternMatches.group("edgeGewicht");
+                    String direction=patternMatches.group("direction");
 
                     Node node1= graph.getNode(nameNode1);
                     if(node1==null) node1=graph.addNode(nameNode1);
                     if(nameNode2!=null){
                         Node node2= graph.getNode(nameNode2);
                         if(node2==null) node2= graph.addNode(nameNode2);
+                        if(direction.equals("->")){
                         if(edgeName==null) edgeName=nameNode1+"->"+nameNode2;
-                        Edge edge= graph.addEdge(edgeName,node1,node2,true);
-                        if(edgeGewicht!=null) graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
+                        Edge edge= graph.addEdge(edgeName,node1,node2,true);}
+                        else if(direction.equals("--")){
+                            if(edgeName==null) edgeName=nameNode1+"--"+nameNode2;
+                            graph.addEdge(edgeName,node1,node2,false);}
+                        }
+                        if(edgeGewicht!=null){
+                            graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
+
+                        }
 
                     }
-                }
-                else if(undirectedMatch.matches()){
-                    String nameNode1= undirectedMatch.group("nameNode1");
-                    String nameNode2= undirectedMatch.group("nameNode2");
-                    String edgeName= undirectedMatch.group("edgeName");
-                    String edgeGewicht=undirectedMatch.group("edgeGewicht");
-                    Node node1= graph.getNode(nameNode1);
-                    if(node1==null) node1=graph.addNode(nameNode1);
-                    if(nameNode2!=null){
-                        Node node2= graph.getNode(nameNode2);
-                        if(node2==null) node2= graph.addNode(nameNode2);
-                        if(edgeName==null) edgeName=nameNode1+"--"+nameNode2;
-                        Edge edge= graph.addEdge(edgeName,node1,node2,false);
-                        if(edgeGewicht!=null) graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
-
-                    }
-
-
-
                 }
 
             }
-        } catch (IOException e) {
+         catch (IOException e) {
             e.printStackTrace();
         }
         return graph;
@@ -99,6 +86,8 @@ public class GraphLesen {
 
     public static void main(String[] args) throws IOException {
         //"C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"
-    Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph05.gka");
+    Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph10.gka");
+        System.setProperty("org.graphstream.ui", "swing");
+        graph.display();
     }
 }
