@@ -60,9 +60,9 @@ public class GraphLesen {
                             graph.addEdge(edgeName,node1,node2,false);}
                         }
                         if(edgeGewicht!=null){
-                            graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
+                            //graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
                             //zeigt die Gewichtung der Kanten an
-                            graph.getEdge(edgeName).setAttribute("ui.label",edgeGewicht);
+                            graph.getEdge(edgeName).setAttribute("ui.label",Double.parseDouble(edgeGewicht));
                             //gibt den Kantennamen style
                             graph.setAttribute("ui.stylesheet", "edge { text-alignment: above; text-size: 14; text-color: red; text-mode: normal; text-background-mode: rounded-box; text-background-color: white; text-style: bold; text-offset: 5px, 0px; }");
                             //nicht nötig aber verbessert die Anzeigequalität
@@ -87,10 +87,10 @@ public class GraphLesen {
 
     public static void main(String[] args) throws IOException {
         //"C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"
-        Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph10.gka");
-        //Graph graph2Andre= GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph04.gka");
+        //Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph10.gka");
+        Graph graph2Andre= GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph04.gka");
         System.setProperty("org.graphstream.ui", "swing");
-        //graph2Andre.display();
-        graph.display();
+        graph2Andre.display();
+        //graph.display();
     }
 }
