@@ -1,10 +1,10 @@
 package Aufgabe1;
 
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GraphTraversieren {
     public static HashSet<Node> traverseGraph(Graph graph, String startNode) {
@@ -18,7 +18,7 @@ public class GraphTraversieren {
         visited.add(node);
         while (!toVisit.isEmpty()) {
             Node currentNode = toVisit.poll();
-            for (Node neighbor : currentNode.neighborNodes().toList()) {
+            for (Node neighbor : currentNode.neighborNodes().collect(Collectors.toSet())) {
                 System.out.println("Current Node: " +currentNode + "\nNeighbors of current Node: " + currentNode.neighborNodes().toList() + "\nVisited Nodes: " + visited + "\n");
                 if (!visited.contains(neighbor)) {
                     toVisit.add(neighbor);
@@ -50,7 +50,7 @@ public class GraphTraversieren {
                 break;
             }
 
-            for (Node neighbor : currentNode.neighborNodes().toList()) {
+            for (Node neighbor : currentNode.neighborNodes().collect(Collectors.toSet())) {
                 if (!distances.containsKey(neighbor)) {
                     toVisit.add(neighbor);
                     predecessors.put(neighbor, currentNode);
@@ -65,13 +65,12 @@ public class GraphTraversieren {
             path.add(0, currentNode);
             currentNode = predecessors.get(currentNode);
         }
-
         return new Pair<>(path, distances.get(endNode));
     }
 
     public static void main(String[] args) {
-        Graph graph = GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph07.gka");
-        Pair<List<Node>, Integer> pair = shortestPath(graph, "v4", "v5");
+        Graph graph = GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
+        Pair<List<Node>, Integer> pair = shortestPath(graph, "a", "e");
         System.setProperty("org.graphstream.ui", "swing");
         graph.display();
         System.out.println(pair.second);
