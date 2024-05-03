@@ -62,15 +62,15 @@ public class GraphLesen {
                             graph.addEdge(edgeName,node1,node2,false);}
                         }
                         if(edgeGewicht!=null){
-                            //graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
-                            //zeigt die Gewichtung der Kanten an
+                            graph.getEdge(edgeName).setAttribute("Gewicht",Double.parseDouble(edgeGewicht));
+                            /**zeigt die Gewichtung der Kanten an
                             graph.getEdge(edgeName).setAttribute("ui.label",Double.parseDouble(edgeGewicht));
-                            //gibt den Kantennamen style
+                            gibt den Kantennamen style
                             graph.setAttribute("ui.stylesheet",
                                     "node { text-alignment: above; text-size: 14; text-color: red; text-mode: normal; text-background-mode: rounded-box; text-background-color: white; text-style: bold; text-offset: 5px, 0px; }");
                             //nicht nötig aber verbessert die Anzeigequalität
                             graph.setAttribute("ui.quality");
-                            graph.setAttribute("ui.antialias");
+                            graph.setAttribute("ui.antialias");**/
                         }
 
                     }
