@@ -25,7 +25,7 @@ public class GraphLesen {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line ;
 
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null && !line.isBlank()) {
                 Matcher patternMatches=directionPattern.matcher(line);
 
                 if(!(patternMatches.matches())) return null;
