@@ -24,8 +24,8 @@ public class GraphSpeichern {
                 String node2 = edge.getNode1().getId();
                 String direction = edge.isDirected() ? "->" : "--";
                 String edgeName = edge.hasAttribute("ui.label") ? edge.getAttribute("ui.label").toString() : "";
-                //String edgeWeight = edge.hasAttribute("Gewicht") ? edge.getAttribute("Gewicht").toString() : "";
-                if (!edgeName.equals("")){
+                String edgeWeight = edge.hasAttribute("Gewicht") ? edge.getAttribute("Gewicht").toString() : "";
+                if (!edgeName.equals("")) {
                     writer.write(node1 + " " + direction + " " + node2 + " : " + edgeName + ";\n");
                 }
                 if (edgeName.equals("")) {
