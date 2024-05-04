@@ -75,6 +75,7 @@ public class GraphLesen {
 
                     }
                 }
+            }
 
             }
          catch (IOException e) {
