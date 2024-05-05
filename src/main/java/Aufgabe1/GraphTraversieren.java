@@ -1,5 +1,7 @@
 package Aufgabe1;
 
+import com.google.common.base.Preconditions;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
@@ -30,11 +32,11 @@ public class GraphTraversieren {
     }
 
     public static Pair<List<Node>, Integer> shortestPath(Graph graph, String startNodeId, String endNodeId) {
+        Preconditions.checkNotNull(endNodeId);
+        Preconditions.checkNotNull(startNodeId);
         Node startNode = graph.getNode(startNodeId);
         Node endNode = graph.getNode(endNodeId);
-        if (startNode == null || endNode == null) {
-            throw new IllegalArgumentException("Start or end node not found in the graph.");
-        }
+
 
         Queue<Node> toVisit = new LinkedList<>();
         HashMap<Node, Node> predecessors = new HashMap<>();
@@ -49,14 +51,14 @@ public class GraphTraversieren {
             if (currentNode.equals(endNode)) {
                 break;
             }
-
-            for (Node neighbor : currentNode.neighborNodes().collect(Collectors.toSet())) {
-                if (!distances.containsKey(neighbor)) {
-                    toVisit.add(neighbor);
-                    predecessors.put(neighbor, currentNode);
-                    distances.put(neighbor, distances.get(currentNode) + 1);
+            currentNode.leavingEdges().forEach((Edge outgoingEdge)->{
+                Node targetNode= outgoingEdge.getTargetNode();
+                if (!distances.containsKey(targetNode)) {
+                    toVisit.add(targetNode);
+                    predecessors.put(targetNode, currentNode);
+                    distances.put(targetNode, distances.get(currentNode) + 1);
                 }
-            }
+            });
         }
 
         List<Node> path = new ArrayList<>();
@@ -69,8 +71,8 @@ public class GraphTraversieren {
     }
 
     public static void main(String[] args) {
-        Graph graph = GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
-        Pair<List<Node>, Integer> pair = shortestPath(graph, "a", "e");
+        Graph graph = GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph04.gka");
+        Pair<List<Node>, Integer> pair = shortestPath(graph, "v2", "v7");
         System.setProperty("org.graphstream.ui", "swing");
         graph.display();
         System.out.println(pair.second);
