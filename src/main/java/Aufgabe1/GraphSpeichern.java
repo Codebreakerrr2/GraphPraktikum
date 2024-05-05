@@ -122,10 +122,8 @@ public class GraphSpeichern {
         );
         Predicate<Edge> filterDirected= (Edge edge)->edge.isDirected();
         Predicate<Edge> filterUnirected= (Edge edge)->!edge.isDirected();
-        List<Edge> directedEdges= graph.edges().filter(filterDirected).toList();
-        List<Edge> undirectedEdges=graph.edges().filter(filterUnirected).toList();
 
-        directedEdges.stream().forEach((Edge edge)->{
+            graph.edges().filter(filterDirected).forEach((Edge edge)->{
             Node node1=edge.getSourceNode();
             Node node2= edge.getTargetNode();
             String node1Name= node1.getId();
@@ -142,7 +140,7 @@ public class GraphSpeichern {
 
 
         });
-        undirectedEdges.stream().forEach((Edge edge)->{
+            graph.edges().filter(filterUnirected).forEach((Edge edge)->{
             Node node1=edge.getSourceNode();
             Node node2= edge.getTargetNode();
             String node1Name= node1.getId();
@@ -166,7 +164,7 @@ public class GraphSpeichern {
 }
 
     public static void main(String[] args) {
-        Graph graph = GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph02.gka");
+        Graph graph = GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
         saveGraphToFile4(graph, "C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\graphDateien\\graph22.txt");
     }
 }
