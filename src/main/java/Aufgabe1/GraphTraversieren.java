@@ -1,5 +1,6 @@
 package Aufgabe1;
 
+import com.google.common.base.Preconditions;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
@@ -8,10 +9,10 @@ import java.util.stream.Collectors;
 
 public class GraphTraversieren {
     public static HashSet<Node> traverseGraph(Graph graph, String startNode) {
+        Preconditions.checkNotNull(startNode);
+        Preconditions.checkNotNull(graph);
         Node node = graph.getNode(startNode);
-        if (node == null) {
-            throw new IllegalArgumentException("Node not found");
-        }
+
         Queue<Node> toVisit = new LinkedList<>();
         HashSet<Node> visited = new HashSet<>();
         toVisit.add(node);
@@ -37,11 +38,10 @@ public class GraphTraversieren {
      * @return
      */
     public static Pair<List<Node>, Integer> shortestPath(Graph graph, String startNodeId, String endNodeId) {
+        Preconditions.checkNotNull(graph);
         Node startNode = graph.getNode(startNodeId);
         Node endNode = graph.getNode(endNodeId);
-        if (startNode == null || endNode == null) {
-            throw new IllegalArgumentException("Start or end node not found in the graph.");
-        }
+
 
         //Nodes to visit
         Queue<Node> toVisit = new LinkedList<>();

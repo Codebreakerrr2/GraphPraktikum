@@ -14,6 +14,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.graphstream:gs-core:2.0")
     implementation("org.graphstream:gs-ui-swing:2.0")
+    implementation("com.google.guava:guava:24.0-jre")
 }
 
 tasks.test {
