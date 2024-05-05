@@ -1,6 +1,7 @@
 package Aufgabe1;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -26,7 +27,6 @@ public class GraphLesen {
         Graph graph = new MultiGraph(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
-
             while ((line = br.readLine()) != null) {
                 Matcher patternMatches = directionPattern.matcher(line);
 
@@ -92,12 +92,12 @@ public class GraphLesen {
         }
 
 
-        public static void main (String[]args) throws IOException {
+/*        public static void main (String[]args) throws IOException {
             //"C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"
             //Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph10.gka");
             Graph graph2Andre = GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
             System.setProperty("org.graphstream.ui", "swing");
             graph2Andre.display();
             //graph.display();
-        }
+        }*/
 }
