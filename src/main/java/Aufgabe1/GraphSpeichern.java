@@ -163,7 +163,7 @@ public class GraphSpeichern {
         }
 }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Graph graph = GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka");
         saveGraphToFile4(graph, "C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\branchAndre\\src\\main\\java\\Aufgabe1\\graphDateien\\graph22.txt");
     }

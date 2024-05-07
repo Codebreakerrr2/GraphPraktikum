@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -22,7 +23,7 @@ public class GraphLesen {
      * Die Methode liest eine Graph-Datei und erzeugt aus der Datei ein Graph-Objekt.
      */
 
-    public static Graph readGraph(String fileName) {
+    public static Graph readGraph(String fileName){
         Pattern directionPattern = Pattern.compile("\\s*(?<nameNode1>\\w+)\\s*((?<direction>->|--)\\s*(?<nameNode2>\\w+)\\s*(?<edgeName>\\(\\w+\\))?\\s*(:\\s*(?<edgeGewicht>\\d+))?)?\\s*;");
         Graph graph = new MultiGraph(fileName);
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
