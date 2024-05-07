@@ -1,4 +1,32 @@
 AUTOR:: Usman Amini, André Demir
-Datum:: 18.04.2024
+Datum:: 07.05.2024
 _____________________________________________________________________________________________________
-Klasse GraphLesen:
+Klasse GraphSpeichern:
+
+Die Klasse GraphSpeichern ist für das Speichern von Graphen in Dateien verantwortlich.
+Sie bietet eine Methode namens `saveGraph`, die einen Graphen und einen Dateipfad
+als Parameter akzeptiert.
+
+Methoden:
+
+- `public static void saveGraph(Graph graph, String filePath) throws IOException`
+
+  Diese Methode speichert einen gegebenen Graphen in einer Datei am angegebenen Pfad.
+  Sie wirft eine IOException, wenn ein Fehler beim Schreiben der Datei auftritt.
+
+  Parameter:
+  - `Graph graph`: Der Graph, der gespeichert werden soll. Dies sollte ein gültiges Graph-Objekt sein.
+  - `String filePath`: Der Pfad zur Datei, in der der Graph gespeichert werden soll. Dies sollte ein gültiger Dateipfad sein.
+
+  Rückgabewert:
+  - Kein Rückgabewert.
+
+  Beispiel:
+  ```java
+  Graph graph = new Graph();
+  // Fügen Sie Knoten und Kanten zum Graphen hinzu...
+  try {
+      GraphSpeichern.saveGraph(graph, "C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graphDatei.gka");
+  } catch (IOException e) {
+      System.out.println("Fehler beim Speichern des Graphen: " + e.getMessage());
+  }

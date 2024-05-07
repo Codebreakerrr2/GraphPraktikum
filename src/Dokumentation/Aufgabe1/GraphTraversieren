@@ -1,4 +1,21 @@
 AUTOR:: Usman Amini, André Demir
-Datum:: 18.04.2024
+Datum:: 07.05.2024
 _____________________________________________________________________________________________________
-Klasse GraphLesen:
+Klasse GraphTraversieren:
+Die Methode shortestPath in der Klasse GraphTraversieren ist dafür verantwortlich, den kürzesten Pfad zwischen zwei Knoten in einem Graphen zu finden.
+Sie verwendet den Breadth-First Search (BFS) Algorithmus, um den kürzesten Pfad zu ermitteln.
+Die Methode nimmt drei Parameter:
+- Graph graph: Der Graph, in dem der kürzeste Pfad gesucht werden soll.
+- String startNodeId: Die ID des Startknotens, von dem aus der kürzeste Pfad gesucht werden soll.
+- String endNodeId: Die ID des Endknotens, zu dem der kürzeste Pfad gesucht werden soll.
+Die Methode gibt ein Paar (Pair) zurück, das die Liste der Knoten auf dem kürzesten Pfad und die Länge des Pfades (in Anzahl der Kanten) enthält.
+
+
+Algorithmus:
+Die Methode beginnt damit, dass sie den Startknoten zur Warteschlange toVisit hinzufügt und seine Distanz auf 0 setzt.
+Dann durchläuft sie die Warteschlange und besucht jeden Knoten.
+Für jeden besuchten Knoten betrachtet sie alle ausgehenden Kanten und fügt den Zielknoten zur Warteschlange hinzu, wenn er noch nicht besucht wurde.
+Sie aktualisiert auch die Vorgänger und die Distanzen der Knoten.
+Wenn der Endknoten erreicht wird, bricht die Schleife ab und die Methode beginnt,
+den Pfad vom Endknoten zum Startknoten zurückzuverfolgen, indem sie die Vorgänger der Knoten verwendet.
+Sie fügt jeden Knoten auf dem Pfad in eine Liste ein und gibt schließlich die Liste der Knoten und die Länge des Pfades zurück als Pair.
