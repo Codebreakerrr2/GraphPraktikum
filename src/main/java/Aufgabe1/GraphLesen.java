@@ -91,8 +91,6 @@ public class GraphLesen {
 
 
         }
-
-
 /*        public static void main (String[]args) throws IOException {
             //"C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"
             //Graph graph= GraphLesen.readGraph("C:\\Users\\Usman\\Documents\\Java Files\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph10.gka");

@@ -15,16 +15,16 @@ class GraphLesenTest {
 
     @Test
     void readDirectedGraphWithoutWeightFile01(){
-        assertNotNull(GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"));
+        assertNotNull(GraphLesen.readGraph("src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph01.gka"));
     }
 
     @Test
     void readUndirectedGraphWithWeightFile04(){
-        assertNotNull(GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph04.gka"));
+        assertNotNull(GraphLesen.readGraph("src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph04.gka"));
     }
 
     @Test
-    void readDirectedGraphWithWeightFile05(){
-        assertNotNull(GraphLesen.readGraph("C:\\Users\\andre\\Desktop\\GraphPraktikum\\src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph05.gka"));
+    void readDirectedGraphWithWeightFile05CorruptFile(){
+        assertNull(GraphLesen.readGraph("src\\main\\java\\Aufgabe1\\Dateien_1_gka\\graph05.gka"));
     }
 }
